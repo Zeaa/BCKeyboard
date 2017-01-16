@@ -12,8 +12,13 @@
 
 #import "FacialView.h"
 #import "Emoji.h"
+#import "PLVEmotionModel.h"
 
 @interface FacialView ()
+
+@property (nonatomic, strong) UIScrollView *scrollView;
+
+@property (nonatomic) NSBundle *emotionBundle;
 
 @end
 
@@ -23,7 +28,10 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _faces = [Emoji allEmoji];
+         Emoji *emoji = [Emoji new];
+        _faces = [emoji allImageEmoji];
+        
+        //_scrollView = [[UIScrollView alloc] init];
     }
     return self;
 }
@@ -45,12 +53,17 @@
     [deleteButton addTarget:self action:@selector(selected:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:deleteButton];
     
-    UIButton *sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [sendButton setTitle:NSLocalizedString(@"send", @"Send") forState:UIControlStateNormal];
-    [sendButton setFrame:CGRectMake((maxCol - 2) * itemWidth - 10, (maxRow - 1) * itemHeight + 5, itemWidth + 10, itemHeight - 10)];
-    [sendButton addTarget:self action:@selector(sendAction:) forControlEvents:UIControlEventTouchUpInside];
-    [sendButton setBackgroundColor:[UIColor colorWithRed:10 / 255.0 green:82 / 255.0 blue:104 / 255.0 alpha:1.0]];
-    [self addSubview:sendButton];
+//    UIButton *sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [sendButton setTitle:NSLocalizedString(@"send", @"Send") forState:UIControlStateNormal];
+//    [sendButton setFrame:CGRectMake((maxCol - 2) * itemWidth - 10, (maxRow - 1) * itemHeight + 5, itemWidth + 10, itemHeight - 10)];
+//    [sendButton addTarget:self action:@selector(sendAction:) forControlEvents:UIControlEventTouchUpInside];
+//    [sendButton setBackgroundColor:[UIColor colorWithRed:10 / 255.0 green:82 / 255.0 blue:104 / 255.0 alpha:1.0]];
+//    [self addSubview:sendButton];
+    
+    
+    // 初始化bundle包
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"Emotion" ofType:@"bundle"];
+    self.emotionBundle = [NSBundle bundleWithPath:path];
     
     for (int row = 0; row < maxRow; row++) {
         for (int col = 0; col < maxCol; col++) {
@@ -59,17 +72,46 @@
                 UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
                 [button setBackgroundColor:[UIColor clearColor]];
                 [button setFrame:CGRectMake(col * itemWidth, row * itemHeight, itemWidth, itemHeight)];
-                [button.titleLabel setFont:[UIFont fontWithName:@"AppleColorEmoji" size:29.0]];
-                [button setTitle: [_faces objectAtIndex:(row * maxCol + col)] forState:UIControlStateNormal];
+                //[button.titleLabel setFont:[UIFont fontWithName:@"AppleColorEmoji" size:29.0]];
+                //[button setTitle: [_faces objectAtIndex:(row * maxCol + col)] forState:UIControlStateNormal];
+                // 重写
+                PLVEmotionModel *emojiModel = [_faces objectAtIndex:(row * maxCol + col)];
+                [button setImage:[self imageForEmotionPNGName:emojiModel.imagePNG] forState:UIControlStateNormal];
                 button.tag = row * maxCol + col;
                 [button addTarget:self action:@selector(selected:) forControlEvents:UIControlEventTouchUpInside];
-                [self addSubview:button];
+                
+                
+                [self.scrollView addSubview:button];
+//                [self addSubview:button];
             }
             else{
                 break;
             }
         }
     }
+#warning - 待解决问题
+    
+    // 设置分页滑动
+    // 或者设置一个UICollection
+    
+//    self.scrollView.contentSize 
+}
+
+#pragma mark - 重写
+
+- (UIScrollView *)scrollView {
+    if (!_scrollView) {
+        _scrollView = [[UIScrollView alloc] init];
+        [self addSubview:_scrollView];
+        _scrollView.frame = self.bounds;
+        _scrollView.backgroundColor = [UIColor greenColor];
+        
+        _scrollView.alwaysBounceHorizontal = YES;
+        
+        // 使用分页
+        _scrollView.pagingEnabled = YES;
+    }
+    return _scrollView;
 }
 
 
@@ -78,9 +120,10 @@
     if (bt.tag == 10000 && _delegate) {
         [_delegate deleteSelected:nil];
     }else{
-        NSString *str = [_faces objectAtIndex:bt.tag];
+        PLVEmotionModel *emojiModel = [_faces objectAtIndex:bt.tag];
         if (_delegate) {
-            [_delegate selectedFacialView:str];
+            [_delegate selectedFacialView:emojiModel];
+//            [_delegate selectedFacialView:str];
         }
     }
 }
@@ -90,6 +133,14 @@
     if (_delegate) {
         [_delegate sendFace];
     }
+}
+
+
+#pragma mark - 自定义方法
+
+- (UIImage *)imageForEmotionPNGName:(NSString *)pngName {
+    return [UIImage imageNamed:pngName inBundle:self.emotionBundle
+ compatibleWithTraitCollection:nil];
 }
 
 @end

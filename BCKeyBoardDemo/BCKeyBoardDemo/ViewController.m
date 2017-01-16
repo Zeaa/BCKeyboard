@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import "BCKeyBoard.h"
+#import "Emoji.h"
+
 @interface ViewController () <BCKeyBoardDelegate>
 
 @end
@@ -25,6 +27,9 @@
     bc.placeholderColor = [UIColor colorWithRed:133/255 green:133/255 blue:133/255 alpha:0.5];
     bc.backgroundColor = [UIColor clearColor];
     [self.view addSubview:bc];
+    
+    Emoji *emoji = [Emoji new];
+    [emoji allImageEmoji];
 }
 - (void)didSendText:(NSString *)text
 {

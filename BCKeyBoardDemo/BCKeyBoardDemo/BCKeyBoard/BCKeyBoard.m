@@ -92,7 +92,7 @@
     [self addSubview:self.backgroundImageView];
     [self.backgroundImageView addSubview:self.textView];
     [self.backgroundImageView addSubview:self.faceBtn];
-    [self.backgroundImageView addSubview:self.moreBtn];
+    //[self.backgroundImageView addSubview:self.moreBtn];
     
     if (!self.faceView) {
         self.faceView = [[DXFaceView alloc] initWithFrame:CGRectMake(0, (kHorizontalPadding * 2 + 30), self.frame.size.width, 200)];
@@ -247,27 +247,29 @@
 {
     [self changeFrame:ceilf([textView sizeThatFits:textView.frame.size].height)];
 }
-- (void)selectedFacialView:(NSString *)str isDelete:(BOOL)isDelete
+- (void)selectedFacialView:(PLVEmotionModel *)emojiModel isDelete:(BOOL)isDelete
 {
     NSString *chatText = self.textView.text;
     
-    if (!isDelete && str.length > 0) {
-        self.textView.text = [NSString stringWithFormat:@"%@%@",chatText,str];
-    }
-    else {
-        if (chatText.length >= 2)
-        {
-            NSString *subStr = [chatText substringFromIndex:chatText.length-2];
-            if ([(DXFaceView *)self.faceView stringIsFace:subStr]) {
-                self.textView.text = [chatText substringToIndex:chatText.length-2];
-                [self textViewDidChange:self.textView];
-                return;
-            }
-        }
-        if (chatText.length > 0) {
-            self.textView.text = [chatText substringToIndex:chatText.length-1];
-        }
-    }
+    self.textView.text = [NSString stringWithFormat:@"%@%@",chatText,emojiModel.text];
+    
+//    if (!isDelete && str.length > 0) {
+//        self.textView.text = [NSString stringWithFormat:@"%@%@",chatText,str];
+//    }
+//    else {
+//        if (chatText.length >= 2)
+//        {
+//            NSString *subStr = [chatText substringFromIndex:chatText.length-2];
+//            if ([(DXFaceView *)self.faceView stringIsFace:subStr]) {
+//                self.textView.text = [chatText substringToIndex:chatText.length-2];
+//                [self textViewDidChange:self.textView];
+//                return;
+//            }
+//        }
+//        if (chatText.length > 0) {
+//            self.textView.text = [chatText substringToIndex:chatText.length-1];
+//        }
+//    }
     [self textViewDidChange:self.textView];
 }
 - (void)sendFace

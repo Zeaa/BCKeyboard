@@ -40,5 +40,8 @@
  @discussion
  @result iOS表情字符串数组
  */
-+ (NSArray *)allEmoji;
+//+ (NSArray *)allEmoji;
+
+- (NSArray *)allImageEmoji;
+
 @end

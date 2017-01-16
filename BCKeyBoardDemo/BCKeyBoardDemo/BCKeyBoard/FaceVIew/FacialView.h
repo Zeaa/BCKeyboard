@@ -11,11 +11,13 @@
   */
 
 #import <UIKit/UIKit.h>
+#import "PLVEmotionModel.h"
 
 @protocol FacialViewDelegate
 
 @optional
--(void)selectedFacialView:(NSString*)str;
+-(void)selectedFacialView:(PLVEmotionModel*)emojiModel;
+//-(void)selectedFacialView:(NSString*)str;
 -(void)deleteSelected:(NSString *)str;
 -(void)sendFace;
 
