@@ -7,8 +7,7 @@
 //
 
 #import "Emoji.h"
-#import "EmojiEmoticons.h"
-#import "PLVEmotionModel.h"
+#import "PLVEmojiModel.h"
 
 @interface Emoji ()
 
@@ -16,7 +15,7 @@
 @property (nonatomic) NSMutableDictionary *emotionDictionary;
 
 // 存放表情模型的数组
-@property (nonatomic) NSMutableArray<PLVEmotionModel *> *allEmotionModels;
+@property (nonatomic) NSMutableArray<PLVEmojiModel *> *allEmojiModels;
 
 @end
 
@@ -37,25 +36,23 @@
         if ([group[@"type"] isEqualToString:@"emoji"]) {
         
             self.emotionDictionary = [NSMutableDictionary dictionary];
-            self.allEmotionModels = [NSMutableArray new];
+            self.allEmojiModels = [NSMutableArray new];
             NSArray<NSDictionary *> *items = group[@"items"];
             for (NSDictionary *item in items) {
-                
-                PLVEmotionModel *model = [PLVEmotionModel modelWithDictionary:item];
-            
+                PLVEmojiModel *model = [PLVEmojiModel modelWithDictionary:item];
                 // 两种方式保存数据
-                [self.allEmotionModels addObject:model];
+                [self.allEmojiModels addObject:model];
                 self.emotionDictionary[model.text] = model.imagePNG;
             }
         }
     }
     
-    return self.allEmotionModels;
+    return self.allEmojiModels;
 }
 
-+ (NSArray *)allEmoji {
-    NSMutableArray *array = [NSMutableArray new];
-    [array addObjectsFromArray:[EmojiEmoticons allEmoticons]];
-    return array;
-}
+//+ (NSArray *)allEmoji {
+//    NSMutableArray *array = [NSMutableArray new];
+//    [array addObjectsFromArray:[EmojiEmoticons allEmoticons]];
+//    return array;
+//}
 @end

@@ -10,7 +10,6 @@
 #import "BCTextView.h"
 
 #import "DXFaceView.h"
-#import "BCMoreView.h"
 
 
 #define SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
@@ -21,7 +20,7 @@
 #define kHorizontalPadding 8 /**< 横向间隔 */
 #define kVerticalPadding 5 /**< 纵向间隔 */
 
-@interface BCKeyBoard () <UITextViewDelegate,DXFaceDelegate,BCMoreViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface BCKeyBoard () <UITextViewDelegate,DXFaceDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (nonatomic,strong)UIImageView *backgroundImageView;
 @property (nonatomic,strong)UIButton *faceBtn;
 @property (nonatomic,strong)UIButton *moreBtn;
@@ -83,11 +82,11 @@
     self.textView.delegate = self;
     
     //更多按钮
-    self.moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.moreBtn.frame = CGRectMake(CGRectGetMaxX(self.textView.frame)+kHorizontalPadding,kHorizontalPadding,30,30);
-    [self.moreBtn addTarget:self action:@selector(willShowactiveView:) forControlEvents:UIControlEventTouchUpInside];
-    [self.moreBtn setBackgroundImage:[UIImage imageNamed:@"chatBar_more"] forState:UIControlStateNormal];
-    [self.moreBtn setBackgroundImage:[UIImage imageNamed:@"chatBar_keyboard"] forState:UIControlStateSelected];
+//    self.moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    self.moreBtn.frame = CGRectMake(CGRectGetMaxX(self.textView.frame)+kHorizontalPadding,kHorizontalPadding,30,30);
+//    [self.moreBtn addTarget:self action:@selector(willShowactiveView:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.moreBtn setBackgroundImage:[UIImage imageNamed:@"chatBar_more"] forState:UIControlStateNormal];
+//    [self.moreBtn setBackgroundImage:[UIImage imageNamed:@"chatBar_keyboard"] forState:UIControlStateSelected];
     
     [self addSubview:self.backgroundImageView];
     [self.backgroundImageView addSubview:self.textView];
@@ -99,13 +98,6 @@
         [(DXFaceView *)self.faceView setDelegate:self];
         self.faceView.backgroundColor = [UIColor whiteColor];
         self.faceView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
-    }
-    
-    if (!self.moreView) {
-        self.moreView = [[BCMoreView alloc] initWithFrame:CGRectMake(0, (kHorizontalPadding * 2 + 30), self.frame.size.width, 200)];
-        self.moreView.backgroundColor = [UIColor whiteColor];
-        [(BCMoreView *)self.moreView setDelegate:self];
-        self.moreView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     }
 }
 - (void)changeFrame:(CGFloat)height{
@@ -177,18 +169,7 @@
 }
 
 #pragma mark 表更多View
-- (void)willShowactiveView:(UIButton *)btn
-{
-    btn.selected = !btn.selected;
-    if(btn.selected == YES){
-        [self willShowBottomView:self.moreView];
-        [self.textView resignFirstResponder];
-        [(BCMoreView *)self.moreView setImageArray:self.imageArray];
-    }else{
-        [self willShowBottomView:nil];
-        [self.textView becomeFirstResponder];
-    }
-}
+
 
 - (void)willShowBottomHeight:(CGFloat)bottomHeight
 {
@@ -247,7 +228,7 @@
 {
     [self changeFrame:ceilf([textView sizeThatFits:textView.frame.size].height)];
 }
-- (void)selectedFacialView:(PLVEmotionModel *)emojiModel isDelete:(BOOL)isDelete
+- (void)selectedFacialView:(PLVEmojiModel *)emojiModel isDelete:(BOOL)isDelete
 {
     NSString *chatText = self.textView.text;
     
@@ -272,6 +253,7 @@
 //    }
     [self textViewDidChange:self.textView];
 }
+
 - (void)sendFace
 {
     NSString *chatText = self.textView.text;
@@ -283,67 +265,8 @@
         }
     }
 }
-- (void)didselectImageView:(NSInteger)index
-{
-    switch (index) {
-        case 0:
-            [self createActionSheet];
-            break;
-        default:
-            break;
-    }
-}
-- (void)createActionSheet
-{
-    UIActionSheet *action=[[UIActionSheet alloc] initWithTitle:@"选取照片" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"从摄像头选取", @"从图片库选择",nil];
-    [action showInView:self];
-}
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    switch (buttonIndex) {
-        case 0:
-            [self openCamera];
-            break;
-        case 1:
-            [self openLibary];
-            break;
-        default:
-            break;
-    }
-}
-- (void)openCamera{
-    //打开系统相机
-    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.delegate = self;
-        picker.allowsEditing = YES;
-        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        [self.currentCtr presentViewController:picker animated:YES completion:nil];
-    }
-}
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    if([self.delegate respondsToSelector:@selector(returnImage:)]){
-        [self.delegate returnImage:image];
-    }
-    UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-    [self.currentCtr dismissViewControllerAnimated:YES completion:nil];
-    
-}
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    [self.currentCtr dismissViewControllerAnimated:YES completion:nil];
-}
-- (void)openLibary{
-    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.delegate = self;
-        picker.allowsEditing = YES;
-        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        [self.currentCtr presentViewController:picker animated:YES completion:nil];
-    }
-}
+
+
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];

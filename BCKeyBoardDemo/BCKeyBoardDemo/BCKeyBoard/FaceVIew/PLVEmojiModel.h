@@ -8,12 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PLVEmotionModel : NSObject
+@interface PLVEmojiModel : NSObject
 
-@property (nonatomic, copy) NSString *text;
-@property (nonatomic, copy) NSString *imagePNG; //png资源名称
-
-@property (nonatomic) NSString *codeId;         //表情ID
+@property (nonatomic, copy) NSString *text;     // 表情符号
+@property (nonatomic, copy) NSString *imagePNG; // png资源名称
+//@property (nonatomic) NSString *codeId;         // 表情ID
 
 
 // 根据字典生成一个表情模型

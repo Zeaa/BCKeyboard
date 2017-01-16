@@ -6,15 +6,14 @@
 //  Copyright © 2017年 io.hzlzh.yunshouyi. All rights reserved.
 //
 
-#import "PLVEmotionModel.h"
+#import "PLVEmojiModel.h"
 
-@implementation PLVEmotionModel
+@implementation PLVEmojiModel
 
 + (instancetype)modelWithDictionary:(NSDictionary *)data {
-    PLVEmotionModel *model = [PLVEmotionModel new];
     
-    // TEXT 需要处理下，添加[]
-    model.text = data[@"text"];
+    PLVEmojiModel *model = [PLVEmojiModel new];
+    model.text = [NSString stringWithFormat:@"[%@]",data[@"text"]];
     model.imagePNG = data[@"image"];
     //model.codeId = data[@"id"];
     

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		670363241E28EC9400249FD8 /* PLVEmotionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 670363231E28EC9400249FD8 /* PLVEmotionModel.m */; };
+		670363241E28EC9400249FD8 /* PLVEmojiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 670363231E28EC9400249FD8 /* PLVEmojiModel.m */; };
 		670363261E28EFCC00249FD8 /* Emotions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 670363251E28EFCC00249FD8 /* Emotions.plist */; };
 		670363281E28F1E100249FD8 /* Emotion.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 670363271E28F1E100249FD8 /* Emotion.bundle */; };
 		CBE2CEEC1C30E3FA0078DC13 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CBE2CEEB1C30E3FA0078DC13 /* main.m */; };
@@ -18,11 +18,9 @@
 		CBE2CF101C30E3FA0078DC13 /* BCKeyBoardDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CBE2CF0F1C30E3FA0078DC13 /* BCKeyBoardDemoUITests.m */; };
 		CBE2CF1F1C30E40C0078DC13 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CBE2CF1E1C30E40C0078DC13 /* AppDelegate.m */; };
 		CBE2CF631C30E4130078DC13 /* BCKeyBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = CBE2CF221C30E4130078DC13 /* BCKeyBoard.m */; };
-		CBE2CF641C30E4130078DC13 /* BCMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = CBE2CF241C30E4130078DC13 /* BCMoreView.m */; };
 		CBE2CF651C30E4130078DC13 /* BCTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = CBE2CF261C30E4130078DC13 /* BCTextView.m */; };
 		CBE2CF661C30E4130078DC13 /* DXFaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = CBE2CF2A1C30E4130078DC13 /* DXFaceView.m */; };
 		CBE2CF671C30E4130078DC13 /* Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = CBE2CF2C1C30E4130078DC13 /* Emoji.m */; };
-		CBE2CF681C30E4130078DC13 /* EmojiEmoticons.m in Sources */ = {isa = PBXBuildFile; fileRef = CBE2CF2E1C30E4130078DC13 /* EmojiEmoticons.m */; };
 		CBE2CF691C30E4130078DC13 /* FacialView.m in Sources */ = {isa = PBXBuildFile; fileRef = CBE2CF301C30E4130078DC13 /* FacialView.m */; };
 		CBE2CF6A1C30E4130078DC13 /* faceDelete.png in Resources */ = {isa = PBXBuildFile; fileRef = CBE2CF331C30E4130078DC13 /* faceDelete.png */; };
 		CBE2CF6B1C30E4130078DC13 /* faceDelete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBE2CF341C30E4130078DC13 /* faceDelete@2x.png */; };
@@ -90,8 +88,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		670363221E28EC9400249FD8 /* PLVEmotionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLVEmotionModel.h; sourceTree = "<group>"; };
-		670363231E28EC9400249FD8 /* PLVEmotionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLVEmotionModel.m; sourceTree = "<group>"; };
+		670363221E28EC9400249FD8 /* PLVEmojiModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLVEmojiModel.h; sourceTree = "<group>"; };
+		670363231E28EC9400249FD8 /* PLVEmojiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLVEmojiModel.m; sourceTree = "<group>"; };
 		670363251E28EFCC00249FD8 /* Emotions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Emotions.plist; sourceTree = "<group>"; };
 		670363271E28F1E100249FD8 /* Emotion.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Emotion.bundle; sourceTree = "<group>"; };
 		CBE2CEE71C30E3FA0078DC13 /* BCKeyBoardDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BCKeyBoardDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,8 +108,6 @@
 		CBE2CF1E1C30E40C0078DC13 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		CBE2CF211C30E4130078DC13 /* BCKeyBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCKeyBoard.h; sourceTree = "<group>"; };
 		CBE2CF221C30E4130078DC13 /* BCKeyBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKeyBoard.m; sourceTree = "<group>"; };
-		CBE2CF231C30E4130078DC13 /* BCMoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMoreView.h; sourceTree = "<group>"; };
-		CBE2CF241C30E4130078DC13 /* BCMoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMoreView.m; sourceTree = "<group>"; };
 		CBE2CF251C30E4130078DC13 /* BCTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCTextView.h; sourceTree = "<group>"; };
 		CBE2CF261C30E4130078DC13 /* BCTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCTextView.m; sourceTree = "<group>"; };
 		CBE2CF271C30E4130078DC13 /* Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
@@ -119,8 +115,6 @@
 		CBE2CF2A1C30E4130078DC13 /* DXFaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXFaceView.m; sourceTree = "<group>"; };
 		CBE2CF2B1C30E4130078DC13 /* Emoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Emoji.h; sourceTree = "<group>"; };
 		CBE2CF2C1C30E4130078DC13 /* Emoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Emoji.m; sourceTree = "<group>"; };
-		CBE2CF2D1C30E4130078DC13 /* EmojiEmoticons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmojiEmoticons.h; sourceTree = "<group>"; };
-		CBE2CF2E1C30E4130078DC13 /* EmojiEmoticons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmojiEmoticons.m; sourceTree = "<group>"; };
 		CBE2CF2F1C30E4130078DC13 /* FacialView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacialView.h; sourceTree = "<group>"; };
 		CBE2CF301C30E4130078DC13 /* FacialView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacialView.m; sourceTree = "<group>"; };
 		CBE2CF331C30E4130078DC13 /* faceDelete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = faceDelete.png; sourceTree = "<group>"; };
@@ -265,8 +259,6 @@
 			children = (
 				CBE2CF211C30E4130078DC13 /* BCKeyBoard.h */,
 				CBE2CF221C30E4130078DC13 /* BCKeyBoard.m */,
-				CBE2CF231C30E4130078DC13 /* BCMoreView.h */,
-				CBE2CF241C30E4130078DC13 /* BCMoreView.m */,
 				CBE2CF251C30E4130078DC13 /* BCTextView.h */,
 				CBE2CF261C30E4130078DC13 /* BCTextView.m */,
 				CBE2CF271C30E4130078DC13 /* Const.h */,
@@ -281,14 +273,12 @@
 			children = (
 				670363271E28F1E100249FD8 /* Emotion.bundle */,
 				670363251E28EFCC00249FD8 /* Emotions.plist */,
-				670363221E28EC9400249FD8 /* PLVEmotionModel.h */,
-				670363231E28EC9400249FD8 /* PLVEmotionModel.m */,
+				670363221E28EC9400249FD8 /* PLVEmojiModel.h */,
+				670363231E28EC9400249FD8 /* PLVEmojiModel.m */,
 				CBE2CF291C30E4130078DC13 /* DXFaceView.h */,
 				CBE2CF2A1C30E4130078DC13 /* DXFaceView.m */,
 				CBE2CF2B1C30E4130078DC13 /* Emoji.h */,
 				CBE2CF2C1C30E4130078DC13 /* Emoji.m */,
-				CBE2CF2D1C30E4130078DC13 /* EmojiEmoticons.h */,
-				CBE2CF2E1C30E4130078DC13 /* EmojiEmoticons.m */,
 				CBE2CF2F1C30E4130078DC13 /* FacialView.h */,
 				CBE2CF301C30E4130078DC13 /* FacialView.m */,
 			);
@@ -556,13 +546,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CBE2CF681C30E4130078DC13 /* EmojiEmoticons.m in Sources */,
-				CBE2CF641C30E4130078DC13 /* BCMoreView.m in Sources */,
 				CBE2CF661C30E4130078DC13 /* DXFaceView.m in Sources */,
 				CBE2CF691C30E4130078DC13 /* FacialView.m in Sources */,
 				CBE2CF991C30E4200078DC13 /* ViewController.m in Sources */,
 				CBE2CF631C30E4130078DC13 /* BCKeyBoard.m in Sources */,
-				670363241E28EC9400249FD8 /* PLVEmotionModel.m in Sources */,
+				670363241E28EC9400249FD8 /* PLVEmojiModel.m in Sources */,
 				CBE2CEEC1C30E3FA0078DC13 /* main.m in Sources */,
 				CBE2CF651C30E4130078DC13 /* BCTextView.m in Sources */,
 				CBE2CF671C30E4130078DC13 /* Emoji.m in Sources */,
