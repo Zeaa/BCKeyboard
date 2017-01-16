@@ -47,10 +47,10 @@
     }
 }
 
-- (void)sendFace
+- (void)deleteEvent
 {
     if (_delegate) {
-        [_delegate sendFace];
+        [_delegate deleteEvent];
     }
 }
 

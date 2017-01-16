@@ -90,8 +90,8 @@
 /* Begin PBXFileReference section */
 		670363221E28EC9400249FD8 /* PLVEmojiModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLVEmojiModel.h; sourceTree = "<group>"; };
 		670363231E28EC9400249FD8 /* PLVEmojiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLVEmojiModel.m; sourceTree = "<group>"; };
-		670363251E28EFCC00249FD8 /* Emotions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Emotions.plist; sourceTree = "<group>"; };
-		670363271E28F1E100249FD8 /* Emotion.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Emotion.bundle; sourceTree = "<group>"; };
+		670363251E28EFCC00249FD8 /* Emotions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Emotions.plist; path = ../FaceVIew/Emotions.plist; sourceTree = "<group>"; };
+		670363271E28F1E100249FD8 /* Emotion.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Emotion.bundle; path = ../FaceVIew/Emotion.bundle; sourceTree = "<group>"; };
 		CBE2CEE71C30E3FA0078DC13 /* BCKeyBoardDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BCKeyBoardDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBE2CEEB1C30E3FA0078DC13 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CBE2CEF41C30E3FA0078DC13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -110,7 +110,6 @@
 		CBE2CF221C30E4130078DC13 /* BCKeyBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCKeyBoard.m; sourceTree = "<group>"; };
 		CBE2CF251C30E4130078DC13 /* BCTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCTextView.h; sourceTree = "<group>"; };
 		CBE2CF261C30E4130078DC13 /* BCTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCTextView.m; sourceTree = "<group>"; };
-		CBE2CF271C30E4130078DC13 /* Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
 		CBE2CF291C30E4130078DC13 /* DXFaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXFaceView.h; sourceTree = "<group>"; };
 		CBE2CF2A1C30E4130078DC13 /* DXFaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXFaceView.m; sourceTree = "<group>"; };
 		CBE2CF2B1C30E4130078DC13 /* Emoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Emoji.h; sourceTree = "<group>"; };
@@ -257,13 +256,12 @@
 		CBE2CF201C30E4130078DC13 /* BCKeyBoard */ = {
 			isa = PBXGroup;
 			children = (
-				CBE2CF211C30E4130078DC13 /* BCKeyBoard.h */,
-				CBE2CF221C30E4130078DC13 /* BCKeyBoard.m */,
+				CBE2CF311C30E4130078DC13 /* resouce */,
+				CBE2CF281C30E4130078DC13 /* FaceVIew */,
 				CBE2CF251C30E4130078DC13 /* BCTextView.h */,
 				CBE2CF261C30E4130078DC13 /* BCTextView.m */,
-				CBE2CF271C30E4130078DC13 /* Const.h */,
-				CBE2CF281C30E4130078DC13 /* FaceVIew */,
-				CBE2CF311C30E4130078DC13 /* image */,
+				CBE2CF211C30E4130078DC13 /* BCKeyBoard.h */,
+				CBE2CF221C30E4130078DC13 /* BCKeyBoard.m */,
 			);
 			path = BCKeyBoard;
 			sourceTree = "<group>";
@@ -271,26 +269,27 @@
 		CBE2CF281C30E4130078DC13 /* FaceVIew */ = {
 			isa = PBXGroup;
 			children = (
-				670363271E28F1E100249FD8 /* Emotion.bundle */,
-				670363251E28EFCC00249FD8 /* Emotions.plist */,
 				670363221E28EC9400249FD8 /* PLVEmojiModel.h */,
 				670363231E28EC9400249FD8 /* PLVEmojiModel.m */,
-				CBE2CF291C30E4130078DC13 /* DXFaceView.h */,
-				CBE2CF2A1C30E4130078DC13 /* DXFaceView.m */,
 				CBE2CF2B1C30E4130078DC13 /* Emoji.h */,
 				CBE2CF2C1C30E4130078DC13 /* Emoji.m */,
 				CBE2CF2F1C30E4130078DC13 /* FacialView.h */,
 				CBE2CF301C30E4130078DC13 /* FacialView.m */,
+				CBE2CF291C30E4130078DC13 /* DXFaceView.h */,
+				CBE2CF2A1C30E4130078DC13 /* DXFaceView.m */,
 			);
 			path = FaceVIew;
 			sourceTree = "<group>";
 		};
-		CBE2CF311C30E4130078DC13 /* image */ = {
+		CBE2CF311C30E4130078DC13 /* resouce */ = {
 			isa = PBXGroup;
 			children = (
+				670363271E28F1E100249FD8 /* Emotion.bundle */,
+				670363251E28EFCC00249FD8 /* Emotions.plist */,
 				CBE2CF321C30E4130078DC13 /* emoji */,
 				CBE2CF351C30E4130078DC13 /* MessageToolbarImages */,
 			);
+			name = resouce;
 			path = image;
 			sourceTree = "<group>";
 		};

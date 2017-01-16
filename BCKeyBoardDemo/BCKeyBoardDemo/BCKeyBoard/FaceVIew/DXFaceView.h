@@ -11,14 +11,13 @@
   */
 
 #import <UIKit/UIKit.h>
-
 #import "FacialView.h"
 
 @protocol DXFaceDelegate <FacialViewDelegate>
 
 @required
 - (void)selectedFacialView:(NSString *)str isDelete:(BOOL)isDelete;
-- (void)sendFace;
+- (void)deleteEvent;
 
 @end
 

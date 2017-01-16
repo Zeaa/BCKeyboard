@@ -8,30 +8,27 @@
 
 #import "BCKeyBoard.h"
 #import "BCTextView.h"
-
 #import "DXFaceView.h"
-
-
-#define SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
-#define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
-
 
 #define kBCTextViewHeight 36 /**< 底部textView的高度 */
 #define kHorizontalPadding 8 /**< 横向间隔 */
 #define kVerticalPadding 5 /**< 纵向间隔 */
 
-@interface BCKeyBoard () <UITextViewDelegate,DXFaceDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface BCKeyBoard () <UITextViewDelegate,DXFaceDelegate,UIActionSheetDelegate,UINavigationControllerDelegate>
+
 @property (nonatomic,strong)UIImageView *backgroundImageView;
 @property (nonatomic,strong)UIButton *faceBtn;
-@property (nonatomic,strong)UIButton *moreBtn;
+@property (nonatomic,strong)UIButton *sendBtn;
 @property (nonatomic,strong)BCTextView  *textView;
 @property (nonatomic,strong)UIView *faceView;
 @property (nonatomic,strong)UIView *moreView;
 @property (nonatomic,assign)CGFloat lastHeight;
 @property (nonatomic,strong)UIView *activeView;
+
 @end
 
 @implementation BCKeyBoard
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (frame.size.height < (kVerticalPadding * 2 + kBCTextViewHeight)) {
@@ -51,6 +48,7 @@
     }
     [super setFrame:frame];
 }
+
 - (void)createUI
 {
     _lastHeight = 30;
@@ -81,17 +79,16 @@
     self.textView.layer.cornerRadius = 6.0f;
     self.textView.delegate = self;
     
-    //更多按钮
-//    self.moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    self.moreBtn.frame = CGRectMake(CGRectGetMaxX(self.textView.frame)+kHorizontalPadding,kHorizontalPadding,30,30);
-//    [self.moreBtn addTarget:self action:@selector(willShowactiveView:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.moreBtn setBackgroundImage:[UIImage imageNamed:@"chatBar_more"] forState:UIControlStateNormal];
-//    [self.moreBtn setBackgroundImage:[UIImage imageNamed:@"chatBar_keyboard"] forState:UIControlStateSelected];
+    //发送按钮
+    self.sendBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    [self.sendBtn setTitle:@"发送" forState:UIControlStateNormal];
+    self.sendBtn.frame = CGRectMake(CGRectGetMaxX(self.textView.frame),kHorizontalPadding,50,30);
+    [self.sendBtn addTarget:self action:@selector(sendButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
     [self addSubview:self.backgroundImageView];
     [self.backgroundImageView addSubview:self.textView];
     [self.backgroundImageView addSubview:self.faceBtn];
-    //[self.backgroundImageView addSubview:self.moreBtn];
+    [self.backgroundImageView addSubview:self.sendBtn];
     
     if (!self.faceView) {
         self.faceView = [[DXFaceView alloc] initWithFrame:CGRectMake(0, (kHorizontalPadding * 2 + 30), self.frame.size.width, 200)];
@@ -100,7 +97,8 @@
         self.faceView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     }
 }
-- (void)changeFrame:(CGFloat)height{
+
+- (void)changeFrame:(CGFloat)height {
     
     if (height == _lastHeight)
     {
@@ -117,7 +115,6 @@
         rect = self.backgroundImageView.frame;
         rect.size.height += changeHeight;
         self.backgroundImageView.frame = rect;
-        
         
         [self.textView setContentOffset:CGPointMake(0.0f, (self.textView.contentSize.height - self.textView.frame.size.height) / 2) animated:YES];
         
@@ -141,6 +138,7 @@
 {
     self.textView.placeholderColor = placeholderColor;
 }
+
 - (void)keyboardWillChangeFrame:(NSNotification *)notification{
     NSDictionary *userInfo = notification.userInfo;
     CGRect endFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
@@ -155,7 +153,9 @@
     };
     [UIView animateWithDuration:duration delay:0.0f options:(curve << 16 | UIViewAnimationOptionBeginFromCurrentState) animations:animations completion:completion];
 }
+
 #pragma mark 表情View
+
 - (void)willShowFaceView:(UIButton *)btn
 {
     btn.selected = !btn.selected;
@@ -190,7 +190,7 @@
 {
     [self willShowBottomView:nil];
     self.faceBtn.selected = NO;
-    self.moreBtn.selected = NO;
+    self.sendBtn.selected = NO;
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
@@ -254,7 +254,7 @@
     [self textViewDidChange:self.textView];
 }
 
-- (void)sendFace
+- (void)deleteEvent
 {
     NSString *chatText = self.textView.text;
     if (chatText.length > 0) {
@@ -264,6 +264,10 @@
             [self changeFrame:ceilf([self.textView sizeThatFits:self.textView.frame.size].height)];
         }
     }
+}
+
+-(void)sendButtonClick {
+    
 }
 
 

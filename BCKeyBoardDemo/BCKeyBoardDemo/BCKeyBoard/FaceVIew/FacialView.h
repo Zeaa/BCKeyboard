@@ -16,9 +16,11 @@
 @protocol FacialViewDelegate
 
 @optional
+
 -(void)selectedFacialView:(PLVEmojiModel*)emojiModel;
--(void)deleteSelected:(NSString *)str;
--(void)sendFace;
+- (void)deleteEvent;
+//-(void)deleteSelected:(NSString *)str;
+//-(void)sendFace;
 
 @end
 

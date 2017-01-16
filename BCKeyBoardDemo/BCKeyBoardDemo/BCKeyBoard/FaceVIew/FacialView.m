@@ -30,8 +30,6 @@
     if (self) {
          Emoji *emoji = [Emoji new];
         _faces = [emoji allImageEmoji];
-        
-        //_scrollView = [[UIScrollView alloc] init];
     }
     return self;
 }
@@ -44,22 +42,6 @@
     int maxCol = 7;
     CGFloat itemWidth = self.frame.size.width / maxCol;
     CGFloat itemHeight = self.frame.size.height / maxRow;
-    
-//    UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [deleteButton setBackgroundColor:[UIColor clearColor]];
-//    [deleteButton setFrame:CGRectMake((maxCol - 1) * itemWidth, (maxRow - 1) * itemHeight, itemWidth, itemHeight)];
-//    [deleteButton setImage:[UIImage imageNamed:@"faceDelete"] forState:UIControlStateNormal];
-//    deleteButton.tag = 10000;
-//    [deleteButton addTarget:self action:@selector(selected:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.scrollView addSubview:deleteButton];
-    
-//    UIButton *sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [sendButton setTitle:NSLocalizedString(@"send", @"Send") forState:UIControlStateNormal];
-//    [sendButton setFrame:CGRectMake((maxCol - 2) * itemWidth - 10, (maxRow - 1) * itemHeight + 5, itemWidth + 10, itemHeight - 10)];
-//    [sendButton addTarget:self action:@selector(sendAction:) forControlEvents:UIControlEventTouchUpInside];
-//    [sendButton setBackgroundColor:[UIColor colorWithRed:10 / 255.0 green:82 / 255.0 blue:104 / 255.0 alpha:1.0]];
-//    [self addSubview:sendButton];
-    
     
     // 初始化bundle包
     NSString *path = [[NSBundle mainBundle] pathForResource:@"Emotion" ofType:@"bundle"];
@@ -81,6 +63,7 @@
                 [self.scrollView addSubview:button];
                 [button setBackgroundColor:[UIColor clearColor]];
                 [button setFrame:CGRectMake(col * itemWidth + addtionWidth, (row-decreaseRow) * itemHeight, itemWidth, itemHeight)];
+                button.showsTouchWhenHighlighted = YES;
                 button.tag = index;
                 [button addTarget:self action:@selector(selected:) forControlEvents:UIControlEventTouchUpInside];
                 
@@ -103,31 +86,6 @@
         //deleteButton.tag = 10000;
         [deleteButton addTarget:self action:@selector(deleteButtonClick) forControlEvents:UIControlEventTouchUpInside];
     }
-    
-    
-    
-    //    for (int row = 0; row < maxRow; row++) {
-    //        for (int col = 0; col < maxCol; col++) {
-    //            int index = row * maxCol + col;
-    //            if (index < [_faces count]) {
-    //                UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    //                [button setBackgroundColor:[UIColor clearColor]];
-    //                [button setFrame:CGRectMake(col * itemWidth, row * itemHeight, itemWidth, itemHeight)];
-    //                //[button.titleLabel setFont:[UIFont fontWithName:@"AppleColorEmoji" size:29.0]];
-    //                //[button setTitle: [_faces objectAtIndex:(row * maxCol + col)] forState:UIControlStateNormal];
-    //                // 重写
-    //                PLVEmotionModel *emojiModel = [_faces objectAtIndex:(row * maxCol + col)];
-    //                [button setImage:[self imageForEmotionPNGName:emojiModel.imagePNG] forState:UIControlStateNormal];
-    //                button.tag = row * maxCol + col;
-    //                [button addTarget:self action:@selector(selected:) forControlEvents:UIControlEventTouchUpInside];
-    //                [self.scrollView addSubview:button];
-    //                //[self addSubview:button];
-    //            }
-    //            else{
-    //                break;
-    //            }
-    //        }
-    //    }
 }
 
 #pragma mark - 重写
@@ -138,9 +96,6 @@
         [self addSubview:_scrollView];
         _scrollView.frame = self.bounds;
         _scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.bounds)*3, CGRectGetHeight(self.bounds));
-        //_scrollView.backgroundColor = [UIColor greenColor];
-        //_scrollView.alwaysBounceHorizontal = YES;
-        
         // 使用分页
         _scrollView.pagingEnabled = YES;
     }
@@ -148,26 +103,17 @@
 }
 
 
--(void)selected:(UIButton*)bt
-{
-    if (bt.tag == 10000 && _delegate) {
-        [_delegate deleteSelected:nil];
-    }else{
-        PLVEmojiModel *emojiModel = [_faces objectAtIndex:bt.tag];
-        if (_delegate) {
-            [_delegate selectedFacialView:emojiModel];
-        }
+-(void)selected:(UIButton *)bt {
+    
+    // 添加逻辑判断代理是否实现这个方法
+    if (_delegate) {
+        [_delegate selectedFacialView:[_faces objectAtIndex:bt.tag]];
     }
 }
 
 - (void)deleteButtonClick {
-    NSLog(@"删除了");
-}
-
-- (void)sendAction:(id)sender
-{
     if (_delegate) {
-        [_delegate sendFace];
+        [_delegate deleteEvent];
     }
 }
 
